@@ -1,17 +1,18 @@
 output "result" {
   value = {
     values = {
-      host = "${kubernetes_service.metadata.name}.${kubernetes_service.metadata.namespace}.svc.cluster.local"
-      port = kubernetes_service.spec.port[0].port
+      server = ""
+      database = ""
+      port = ""
       username = ""
     }
     secrets = {
       password = ""
+      connectionString = ""
     }
     // https://docs.radapp.io/concepts/api-concept/#resource-ids
     resources = [
-        "/planes/kubernetes/local/namespaces/${kubernetes_service.metadata.namespace}/providers/core/Service/${kubernetes_service.metadata.name}",
-        "/planes/kubernetes/local/namespaces/${kubernetes_deployment.metadata.namespace}/providers/apps/Deployment/${kubernetes_deployment.metadata.name}"
+        "/planes/azure/azurecloud/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-group",
     ]
   }
   description = "The result of the Recipe. Must match the target resource's schema."

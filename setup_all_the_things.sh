@@ -10,3 +10,4 @@ az aks get-credentials --resource-group $CLUSTER_RG --name $CLUSTER_NAME --overw
 rad install kubernetes
 rad group create microservice-app
 rad env create demo-dev --group microservice-app --namespace demo-dev-microservice-app
+rad recipe register mymssql --environment demo-dev --group microservice-app --resource-type Applications.Datastores/sqlDatabases --template-kind terraform --template-path github.com/implodingduck/radius-demo//recipes/mssql --template-version "0.0.1"
