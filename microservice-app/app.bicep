@@ -23,12 +23,12 @@ resource demo 'Applications.Core/containers@2023-10-01-preview' = {
 }
 
 resource db 'Applications.Datastores/sqlDatabases@2023-10-01-preview' = {
-  name: 'db2'
+  name: 'db4'
   properties: {
     environment: environment
     application: application
     recipe: {
-      name: 'mymssql'
+      name: 'mymssql4'
     } 
   }
 }

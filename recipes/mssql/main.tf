@@ -1,5 +1,5 @@
 locals {
-  name = sha512(var.context.resource.id)
+  name = "rad${sha512(var.context.resource.id)}"
   tags = {
     "managed_by" = "radius"
     "repo"       = "radius-demo"
@@ -31,7 +31,7 @@ resource "azurerm_mssql_server" "this" {
 }
 
 resource "azurerm_mssql_database" "this" {
-  name           = local.name
+  name           = "db${local.name}"
   server_id      = azurerm_mssql_server.this.id
   collation      = "SQL_Latin1_General_CP1_CI_AS"
   license_type   = "LicenseIncluded"
