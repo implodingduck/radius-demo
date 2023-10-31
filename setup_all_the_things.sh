@@ -8,6 +8,8 @@ cd ..
 az aks get-credentials --resource-group $CLUSTER_RG --name $CLUSTER_NAME --overwrite-existing
 ./install_radius_cli.sh
 rad install kubernetes
+rad workspace create kubernetes microservice-app
+rad workspace switch microservice-app
 rad group create microservice-app
 rad env create demo-dev --group microservice-app --namespace demo-dev-microservice-app
-rad recipe register mymssql --resource-type Applications.Datastores/sqlDatabases --template-kind terraform --template-path github.com/implodingduck/radius-demo//recipes/mssql
+rad recipe register myredis --resource-type Applications.Datastores/redisCaches --template-kind terraform --template-path github.com/implodingduck/radius-demo//recipes/redis

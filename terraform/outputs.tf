@@ -9,3 +9,7 @@ output "cluster_rg" {
 output "clluster_oidc_url" {
     value = azurerm_kubernetes_cluster.aks.oidc_issuer_url
 }
+
+output "subscription_id" {
+    value = data.azurerm_client_config.current.subscription_id
+}

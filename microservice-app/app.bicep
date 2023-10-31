@@ -22,13 +22,13 @@ resource demo 'Applications.Core/containers@2023-10-01-preview' = {
   }
 }
 
-resource db 'Applications.Datastores/sqlDatabases@2023-10-01-preview' = {
-  name: 'db4'
+resource cache 'Applications.Datastores/redisCaches@2023-10-01-preview' = {
+  name: 'cache'
   properties: {
     environment: environment
     application: application
     recipe: {
-      name: 'mymssql4'
+      name: 'myredis'
     } 
   }
 }
