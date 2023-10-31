@@ -1,7 +1,7 @@
 resource "kubernetes_deployment" "redis" {
   metadata {
-    name = "redis-${sha512(var.context.resource.id)}"
-    namespace = var.context.runtime.kubernetes.namespace
+    name = "redis-${sha512(var.recipe_context.resource.id)}"
+    namespace = var.recipe_context.runtime.kubernetes.namespace
     labels = {
       app = "redis"
     }
@@ -10,14 +10,14 @@ resource "kubernetes_deployment" "redis" {
     selector {
       match_labels = {
         app = "redis"
-        resource = var.context.resource.name
+        resource = var.recipe_context.resource.name
       }
     }
     template {
       metadata {
         labels = {
           app = "redis"
-          resource = var.context.resource.name
+          resource = var.recipe_context.resource.name
         }
       }
       spec {
@@ -35,14 +35,14 @@ resource "kubernetes_deployment" "redis" {
 
 resource "kubernetes_service" "redis" {
   metadata {
-    name = "redis-${sha512(var.context.resource.id)}"
-    namespace = var.context.runtime.kubernetes.namespace
+    name = "redis-${sha512(var.recipe_context.resource.id)}"
+    namespace = var.recipe_context.runtime.kubernetes.namespace
   }
   spec {
     type = "ClusterIP"
     selector = {
       app = "redis"
-      resource = var.context.resource.name
+      resource = var.recipe_context.resource.name
     }
     port {
       port        = var.port
