@@ -1,6 +1,6 @@
 output "result" {
   value = {
-    values = {
+    properties = {
       host = "${kubernetes_service.redis.metadata.0.name}.${kubernetes_service.redis.metadata.0.namespace}.svc.cluster.local"
       port = kubernetes_service.redis.spec.0.port.0.port
       username = ""
