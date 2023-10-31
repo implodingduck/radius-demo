@@ -14,7 +14,7 @@ locals {
 
 resource "kubernetes_deployment" "redis" {
   metadata {
-    name = "redis-${sha512(local.recipe_context.resource.id)}"
+    name = "redis-${substr(sha512(local.recipe_context.resource.id), 0, 16)}"
     namespace = local.recipe_context.runtime.kubernetes.namespace
     labels = {
       app = "redis"
@@ -49,7 +49,7 @@ resource "kubernetes_deployment" "redis" {
 
 resource "kubernetes_service" "redis" {
   metadata {
-    name = "redis-${sha512(local.recipe_context.resource.id)}"
+    name = "redis-${substr(sha512(local.recipe_context.resource.id),0,16)}"
     namespace = local.recipe_context.runtime.kubernetes.namespace
   }
   spec {
